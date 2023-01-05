@@ -6,13 +6,6 @@ type Props = {
   ids?: string[];
 };
 
-
-const fetchIDs = async () => {
-  const listRes = await (await fetch("http://localhost:41595/api/item/list")).json()
-  const ids: string[] = listRes.data.map((item: any) => item.id)
-  return ids
-}
-
 export default function Home(props: Props) {
   return (
     <>
@@ -33,6 +26,12 @@ export default function Home(props: Props) {
       </main>
     </>
   )
+}
+
+const fetchIDs = async () => {
+  const listRes = await (await fetch("http://localhost:41595/api/item/list")).json()
+  const ids: string[] = listRes.data.map((item: any) => item.id)
+  return ids
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
